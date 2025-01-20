@@ -17,9 +17,9 @@
             int sum = number1 + number2; // Точка останова 3
             int difference = number1 - number2; // Точка останова 4
 
-            bool isEven = sum % 2 == 0; // Точка останова 5
+            bool isEven = sum % 2 == 0; // Условная точка останова 5 (проверка чётности)  sum % 2 == 0;
             Console.WriteLine($"Сумма чисел: {sum}");
-            Console.WriteLine($"Разность чисел: {difference}");
+            Console.WriteLine($"Разность чисел: {difference}"); // Условная точка останова 6 (разность больше 10)  difference  <-10
             Console.WriteLine($"Сумма четная? {isEven}");
 
             LogToFile(number1, number2, sum, difference, isEven);
