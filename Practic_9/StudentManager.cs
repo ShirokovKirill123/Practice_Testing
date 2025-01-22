@@ -1,4 +1,10 @@
-﻿namespace Practice_9
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practic_9
 {
     public class StudentManager
     {

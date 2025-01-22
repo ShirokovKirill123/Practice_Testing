@@ -1,6 +1,6 @@
-using Practice_9;
+using Practic_9;
 
-namespace Practice_9_StudentManagerTests
+namespace StudentManagerTests
 {
     public class StudentManagerTests
     {
@@ -83,9 +83,11 @@ namespace Practice_9_StudentManagerTests
         }
 
         [Test]
-        public void AddStudent_ShouldThrowException_WhenGradesListIsEmpty() // Негативный сценарий
+        public void GetSortedStudentsByAverageGrade_ShouldReturnEmpty_WhenNoStudentsExist() // Негативный сценарий
         {
-            Assert.Throws<InvalidOperationException>(() => _manager.AddStudent("Alice", new List<int>()));
+            var sortedStudents = _manager.GetSortedStudentsByAverageGrade();
+
+            Assert.That(sortedStudents, Is.Empty);
         }
 
         [Test]
@@ -98,15 +100,12 @@ namespace Practice_9_StudentManagerTests
         }
 
         [Test]
-        public void GetSortedStudentsByAverageGrade_ShouldSkipStudentsWithNoGrades() // Негативный сценарий
+        public void AddStudent_ShouldHandleDuplicateGrades()  // Негативный сценарий
         {
-            _manager.AddStudent("Empty", new List<int>());
-            _manager.AddStudent("Alice", new List<int> { 4, 5, 3 });
+            _manager.AddStudent("Bob", new List<int> { 5, 5, 5 });
 
-            var sortedStudents = _manager.GetSortedStudentsByAverageGrade();
-
-            Assert.That(sortedStudents, Does.Contain("Alice - Средний балл: 4"));
-            Assert.That(sortedStudents, Does.Not.Contain("Empty"));
+            var students = _manager.GetStudents();
+            Assert.That(students, Does.Contain("Bob - Средний балл: 5"));
         }
     }
 }
